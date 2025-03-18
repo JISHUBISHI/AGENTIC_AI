@@ -4,7 +4,11 @@ import yfinance as yf
 import os
 from dotenv import load_dotenv 
 load_dotenv()
-
+from langchain.agents import AgentExecutor
+from langchain.tools import tool
+from langchain_community.tools.tavily_search import TavilySearchResults
+from langchain_groq import ChatGroq
+import yfinance as yf
 
 # Set up API keys (Use environment variables instead of hardcoding)
 os.environ["GROQ_API_KEY"] = os.environ.get("GROQ_API_KEY")
@@ -17,7 +21,7 @@ st.title("LangChain & Finance Data Viewer")
 model_name = st.selectbox("Select AI Model:", ["gemma2-9b-it"])
 
 # Initialize LLM
-llm = ChatGroq(model_name=model_name)
+llm = ChatGroq(model_name = "gemma2-9b-it")
 
 # Stock Data Section
 st.header("Stock Market Data")
